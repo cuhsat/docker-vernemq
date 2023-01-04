@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: vernemq/vernemq
-  tag: 1.12.3-alpine
+  tag: 1.12.6.2-alpine
 
   pullPolicy: IfNotPresent
 
@@ -51,8 +51,13 @@ service:
     port: 8443
     # This is the port used by nodes to expose the service
     nodePort: 8443
+  api:
+    enabled: false
+    port: 8888
+    nodePort: 38888
   annotations: {}
   labels: {}
+  
 
 ## Ingress can optionally be applied when enabling the MQTT websocket service
 ## This allows for an ingress controller to route web ports and arbitrary hostnames
@@ -199,6 +204,7 @@ statefulset:
 #    prometheus.io/port: "8888"
   annotations: {}
   labels: {}
+  podLabels: {}
   lifecycle: {}
 
 pdb:
